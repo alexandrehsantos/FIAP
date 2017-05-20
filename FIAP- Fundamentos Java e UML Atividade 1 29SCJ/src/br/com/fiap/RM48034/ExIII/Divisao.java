@@ -13,6 +13,7 @@ public class Divisao implements Operacao {
 		Double acumulador = 0d;
 
 		for(int i=1; i <= numeros.size(); i++){
+			
 			if(i%2!=0){
 				acumulador+=numeros.get(i);
 			}
