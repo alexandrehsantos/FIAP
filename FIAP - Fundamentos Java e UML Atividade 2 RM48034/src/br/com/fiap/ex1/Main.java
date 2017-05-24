@@ -7,23 +7,17 @@ public class Main {
 		Calculadora calculadora = new Calculadora();
 		Command command = new Command();
 		
-//		String entrada1 = JOptionPane.showInputDialog("DIGITE O PRIMEIRO VALOR PARA CALCULAR");
-//		String entradaOperador = JOptionPane.showInputDialog("DIGITE O QUAL TIPO DE OPERAÇÃO DESEJA FAZER (+,-,*,/");
-//		String entrada2 = JOptionPane.showInputDialog("DIGITE O SEGUNDO VALOR PARA CALCULAR");
-		
-//		Operadores operador = Operadores.valueOf(entradaOperador);
-		
-		Operadores[] values = Operadores.values();
-		for (Operadores operadores : values) {
-			System.out.println(operadores.getOperador());
+		Operadores[] options = Operadores.values();
+
+		int option = JOptionPane.showOptionDialog(null, "Operadores",
+				"Selecione a operação que deseja realizar entre os dois valores", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+		if (option != JOptionPane.CLOSED_OPTION) {
+			resultado = command.executarCalculo(calculadora, options[option], Float.valueOf(valor1), Float.valueOf(valor2));
+			JOptionPane.showMessageDialog(null, "Resultado de sua operacao: " + resultado);
+		} else {
+			System.out.println("Nenhuma operacao foi selectionada");
 		}
-		
-		System.out.println(Operadores.valueOf("SOMA"));
-		
-		
-//		float resultado = command.executarCalculo(calculadora, operador, Float.valueOf(entrada1), Float.valueOf(entrada2));
-		
-		
 		
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.fiap.ex1;
 
 public enum Operadores {
+	
 	SOMA("+"),
 	SUBTRACAO("-"),
 	DIVISAO("/"),
