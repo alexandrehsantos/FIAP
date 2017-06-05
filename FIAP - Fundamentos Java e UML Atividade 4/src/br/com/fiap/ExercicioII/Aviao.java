@@ -1,56 +1,64 @@
 package br.com.fiap.ExercicioII;
 
-public class Aviao {
+public class Aviao extends Thread {
 
-	private String nomeDoVoo;
+	private String nome;
 	private Aeroporto aeroporto;
 
-	public Aviao(String nomeDoVoo, Aeroporto aeroporto) {
-		this.nomeDoVoo = nomeDoVoo;
+	public Aviao(String nome, Aeroporto aeroporto) {
+		this.setNome(nome);
 		this.aeroporto = aeroporto;
-	}
-
-	public void decolar() {
-		String nome = Thread.currentThread().getName();
-
-		System.out.println(this.nomeDoVoo + " \n Aguardando disponibilidade de pista \n");
-		aeroporto.aguardarPistaDisponivel();
-
-		System.out.println(this.nomeDoVoo + " \n Seguindo para pista para decolagem \n");
-
-		aguardar(5000);
-
-		System.out.println(this.nomeDoVoo + " \n DECOLANDO î \n\n");
-	}
-
-	public void aterrisar() {
-		String nome = Thread.currentThread().getName();
-
-		System.out.println(this.nomeDoVoo + " \n Aguardando disponibilidade de pista \n");
-
-		aeroporto.aguardarPistaDisponivel();
-
-		System.out.println(this.nomeDoVoo + " \n Preparando-se para aterrissagem \n");
-
-		aguardar(5000);
-
-		System.out.println(this.nomeDoVoo + " ATERRISANDO ¬ \n");
-
-		// aeroporto.aguardarPistaDisponivel();
 
 	}
 
-	public void voar() {
-		aguardar(2000);
-	}
-
-	private void aguardar(int millis) {
+	public synchronized void aterrissar() {
 		try {
-			Thread.sleep(millis);
+
+			System.out.println(Thread.currentThread().getName() + ": \n Solicitando pista para pouso");
+			this.aeroporto.aguardarPistaDisponivel();
+			System.out.println(Thread.currentThread().getName() + ": \n Realizando procedimento de pouso");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	public synchronized void decolar() {
+		System.out.println(Thread.currentThread().getName() + ": \n Solicitando pista para decolagem");
+		try {
+			this.aeroporto.aguardarPistaDisponivel();
+			
+			System.out.println(Thread.currentThread().getName() + ": \n Prosseguindo com procedimentos de voo");
+			this.voar();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private  synchronized void voar() {
+		System.out.println(Thread.currentThread().getName() + ": \n Voando... ");
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			this.decolar();
+			this.aterrissar();
+		}
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }
