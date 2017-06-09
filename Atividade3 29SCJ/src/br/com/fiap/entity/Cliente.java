@@ -11,7 +11,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="CLIENTES")
-public class Clientes {
+public class Cliente {
 
 	@Id
 	@Column(name="ID")
