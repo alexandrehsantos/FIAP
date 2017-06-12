@@ -10,9 +10,5 @@ public class PedidoDAO extends GenericDao<Pedido> implements Dao<Pedido>{
 	}
 
 	
-	@Override
-	public void adicionar(Pedido entidade) {
-		super.adicionar(entidade);
-	}
 	
 }

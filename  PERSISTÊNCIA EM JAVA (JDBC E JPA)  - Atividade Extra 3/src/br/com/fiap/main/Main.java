@@ -3,6 +3,7 @@ package br.com.fiap.main;
 import java.util.Calendar;
 
 import br.com.fiap.dao.ClienteDAO;
+import br.com.fiap.dao.Dao;
 import br.com.fiap.dao.GenericDao;
 import br.com.fiap.dao.PedidoDAO;
 import br.com.fiap.entity.Cliente;
@@ -21,7 +22,6 @@ public class Main {
 		data.set(2015, 6, 18, 10, 10);
 		pedido.setData(data);
 
-		new PedidoDAO(Class<Pedido> pedido	);
-		
+		new PedidoDAO(classe)
 	}
 }
