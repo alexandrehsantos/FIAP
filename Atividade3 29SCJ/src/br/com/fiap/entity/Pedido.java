@@ -1,10 +1,15 @@
 package br.com.fiap.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="PEDIDOS")
@@ -15,8 +20,12 @@ public class Pedido {
 	private Integer id;
 
 	@OneToMany(mappedBy="Clientes")
-	@Column(name="IDCLIENTE")
-	private Integer idCliente;
+	@JoinColumn(name="CLIENTE_ID")
+	private Cliente cliente;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name="DATA")
+	private Calendar data;
 	
 	
 	@Column(name="NOME", length=45)

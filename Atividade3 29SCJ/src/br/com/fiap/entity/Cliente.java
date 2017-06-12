@@ -1,13 +1,17 @@
 package br.com.fiap.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name="CLIENTES")
@@ -17,13 +21,12 @@ public class Cliente {
 	@Column(name="ID")
 	private Integer id;
 	
+	@ManyToAny
+	@JoinColumn(name="PEDIDO_ID")
+	List<Pedido> pedidos;
 	
 	@Column(name="IDCLIENTE")
 	private Integer idCliente;
-	
-	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name="DATA")
-	private Date data;
 	
 	@Column(name="DESCRICAO")
 	private String descricao;
@@ -43,12 +46,6 @@ public class Cliente {
 	}
 	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
-	}
-	public Date getData() {
-		return data;
-	}
-	public void setDate(Date data) {
-		this.data = data;
 	}
 	public String getDescricao() {
 		return descricao;
