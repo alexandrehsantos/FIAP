@@ -28,7 +28,7 @@ public class GenericDao<T> implements Dao<T>{
 	@Override
 	public List<T> listar() {
 		em = JpaUtil.getEntityManager();
-		return em.createQuery("FROM" + classe.getSimpleName()).getResultList();
+		return em.createQuery("FROM " + classe.getSimpleName()).getResultList();
 	}
 
 	@Override
