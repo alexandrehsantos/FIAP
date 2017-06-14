@@ -1,10 +1,29 @@
 package br.com.fiap.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity(name="procedimento")
 public class Procedimento {
+	@Id
+	@Column(name="ID")
 	private Integer id;
+	@Column(name="DESCRICAO")
 	private String descricao;
+	@Column(name="PRECO")
 	private Double preco;
+	
+	@Column(name="PACIENTE")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Paciente paciente;
+	
+	
+	
+	
+	
 	
 	
 	public Integer getId() {

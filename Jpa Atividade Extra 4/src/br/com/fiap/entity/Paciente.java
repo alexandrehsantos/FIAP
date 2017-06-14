@@ -2,12 +2,27 @@ package br.com.fiap.entity;
 
 import java.time.LocalDate;
 
-public class Paciente {
-	private String cpf; 
-	private String nome;
-	private LocalDate dataNascimento;
-	private String telefone;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@Entity(name="paciente")
+public class Paciente {
+	@Column(name="CPF", unique=true)
+	private String cpf;
+	@Column(name="NOME")
+	private String nome;
+	@Column(name="DATANASC")
+	private LocalDate dataNascimento;
+	@Column(name="TELEFONE")
+	private String telefone;
+	
+	@OneToOne(mappedBy="id")
+	private Agenda agenda;
+
+	
+	
 	public String getCpf() {
 		return cpf;
 	}

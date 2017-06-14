@@ -1,15 +1,22 @@
 package br.com.fiap.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import org.hibernate.annotations.Table;
 
-@Entity
+@Entity(name="matmed")
 public class Matmed {
+	@Id
 	private Integer id;
-	private String descricao; 
+	@Column(name="DESCRICAO")
+	private String descricao;
+	@Column(name="PRECO")
 	private Double preco;
+	@Column(name="FABRICANTE")
 	private String fabricante;
+	@Column(name="PACIENTE")
 	private Paciente paciente;
 	
 	
